@@ -1,15 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../base.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title></title>
-  <link rel="stylesheet" href="../base.css">
-</head>
+  <body>
+    <script>
+      const outer = () => {
+        const outerVar = "Hey I am the outer Var!";
 
-<body>
+        const inner = () => {
+          const innerVar = "Hey I am the inner Var!";
+          console.log(innerVar);
+          console.log(outerVar);
+        };
 
-</body>
+        return inner;
+      };
 
+      const innerFn = outer();
+      innerFn();
+
+      // Example 1
+
+      const createGreeting = (greeting = "") => {
+        const myGreet = greeting.toUpperCase();
+        return function (name) {
+          return `${myGreet} ${name}`;
+        };
+      };
+
+      const sayHello = createGreeting("Hello");
+      const sayHi = createGreeting("Hi");
+
+      console.log(sayHello("Dan"));
+      console.log(sayHi("Dan"));
+
+      // Example 2
+
+      const createGame = (gameName) => {
+        let score = 0;
+
+        const win = () => {
+          score++;
+          return `Your ${gameName} score is ${score}`;
+        };
+
+        return win;
+      };
+
+      const footballGame = createGame("Football");
+    </script>
+  </body>
 </html>
